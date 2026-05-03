@@ -1,4 +1,5 @@
 import cv2
+import time
 import torch
 from PIL import Image
 import torchvision
@@ -30,6 +31,7 @@ fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('output.avi', fourcc, FPS, (w,  h))
 
 i = 0
+start = time.time()
 while i < NUM_FRAMES:
     ret, frame = cap.read()
     if not ret:
@@ -64,6 +66,10 @@ while i < NUM_FRAMES:
     # Press 'q' to quit
     # if cv2.waitKey(1) & 0xFF == ord('q'):
     #     break
+
+elapsed = time.time() - start
+print(f"elapsed time: {round(elapsed, 2)} seconds")
+print(f"fps: {round(NUM_FRAMES / elapsed, 2)}")
 
 cap.release()
 out.release()
