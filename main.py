@@ -10,9 +10,10 @@ FPS = 10
 NUM_FRAMES = 100
 HF_MODEL_NAME = "PekingU/rtdetr_v2_r18vd"
 CONFIDENCE_THRESHOLD = 0.5
+DEVICE = "cuda"
 
-image_processor = RTDetrImageProcessor.from_pretrained(HF_MODEL_NAME)
-model = RTDetrV2ForObjectDetection.from_pretrained(HF_MODEL_NAME)
+image_processor = RTDetrImageProcessor.from_pretrained(HF_MODEL_NAME, device=DEVICE)
+model = RTDetrV2ForObjectDetection.from_pretrained(HF_MODEL_NAME).to(DEVICE)
 id_to_label = model.config.id2label
 
 # 0 is usually the default USB camera

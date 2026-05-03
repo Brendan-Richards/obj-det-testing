@@ -3,7 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: rtdetr-v2-trt
     environment:
       - DISPLAY
     devices:
